@@ -16,6 +16,7 @@
 1. 克隆代码：
 
 >cd path/to/your/workspace
+
 >git clone https://github.com/WangYuanStudio/weather-of-TA.git
 
 2.打开 `微信开发者工具`
