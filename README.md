@@ -13,13 +13,13 @@
 - 本地储存TA的城市
 
 ### 使用步骤
-
 1. 克隆代码：
 
 >cd path/to/your/workspace
 >git clone https://github.com/WangYuanStudio/weather-of-TA.git
 
 2.打开 `微信开发者工具`
+
 3.添加项目
 - AppID:选无`AppID`
 - 项目名称：任意填写
