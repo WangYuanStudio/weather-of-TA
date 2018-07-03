@@ -1,0 +1,138 @@
+<!--index.wxml-->
+<view class='body'>
+  <image src='../../img/bg.jpg' class='bodybg'></image>
+  <view class='author' bindtap='openfollow'>
+    <image src='../../img/logo.jpg' class='logo'></image>
+    <text>网园资讯工作室</text>
+    <text style='position:relative;bottom:1rpx;'>页面部提供技术支持</text>
+  </view>
+
+  <!--关注我们  -->
+
+  <!--幕底  -->
+  <view class='recommend_bg' wx:if="{{follow}}"></view>
+  <i class='iconfont icon-right-arrow arrow' wx:if="{{follow}}"></i>
+  <view class='recommend' wx:if="{{follow}}">
+    
+    <i class='iconfont icon-chacha' bindtap='closefollow'></i>
+    <view class='recommend_title voidborder'>
+      <view class='square leftslide'></view>
+      <text class='void'>关注我们</text>
+    </view>
+    <!-- <view class='follow_word' style='margin:30rpx 0rpx -10rpx 40rpx;font-weight:normal;font-size:37rpx;'>关注我们</view> -->
+    <view class='follow_word' style='margin-top:40rpx;'>
+      <text>1.点击</text>
+      <image src='../../img/dian.png' class='dianimg'></image>
+      <text>选择</text>
+      <text style='font-weight:normal'> 关于TA的天气Pro</text>
+    </view>
+    <view class='follow_word' style='margin:40rpx 40rpx;margin-bottom:20rpx;'>
+      <text>2.选择</text>
+      <text style='font-weight:normal;'> 相关公众号</text>
+    </view>
+    <view class='follow_word'>
+      <text>3.关注</text>
+      <image src="../../img/gongzhonghao.png" style='width:230rpx;height:70rpx;position:relative;top:20rpx;margin-left:20rpx;'></image>
+    </view>
+    <text>更多精彩</text>
+    <text>尽在网园</text>
+    <i class='icon'></i>
+  </view>   
+
+  <!--头部  -->
+  <view class='top'>
+     <!-- <view class="top_title"> -->
+      <!-- <view class='top_title-bg'></view> -->
+      <view class='top_word'>Ta的天气</view>
+    <!-- </view>  -->
+    <button class='all_delete' bindtap='deletepopup' hover-class='button-active' disabled="{{list.length==0}}">{{deleteword?"删除":"完成"}}</button>
+    <button class='addlist' bindtap='openpopup' hover-class='button-active'>创建</button>
+  </view>
+  <!--头部结束  -->
+
+  <!--弹窗 -->
+  <view class='popup' wx:if='{{popup_show}}'>
+    <i class='iconfont icon-chacha' bindtap='openpopup'></i>
+    <view class='popup_top'>
+      <input maxlength='8' class='popup_input' placeholder='昵称' placeholder-style='font-size:37rpx;' bindinput="nameinput"></input>
+      <button class='popup_location' bindtap='chooselocation' hover-class='button-active'>Ta的位置</button>
+    </view>
+    <view class='location_content'>
+      {{locShow}}
+    </view>
+    <button class='popup_submit' bindtap='addlist' hover-class='button-active'>创建</button>
+  </view>
+  <!--弹窗结束  -->
+
+  <view class="mian">
+    <!--为空时出现提示 -->
+    <view class='nullprompt' wx:if='{{list.length==0}}'>
+      <view>
+        你是否有个在意的<text>Ta</text>，
+      </view>
+      <view>
+        挂念着Ta的点点滴滴，
+      </view>
+      <view>
+        若此时Ta的心情，
+      </view>
+      <view>
+        如同Ta所在城市的天气，
+      </view>
+      <view>
+         你是否会想了解呢？
+      </view>
+    </view>
+   
+    <!-- demo -->
+    <view class='demo_container' wx:for='{{list}}' wx:for-index='index' wx:key="*this">
+
+      <!-- 上容器 -->
+      <!--linear-gradient(90deg,rgba(195,189,186,1),#ffffff)  -->
+      <view class='container_main' style='background:{{isShow[index]?"rgba(195,189,186,1)":"rgba(255,255,255,0.9)"}};color:{{isShow[index]?"#ffffff":"#333333"}}{{weathertype==0?black:""}}'>
+        <view class='name_r'>
+          <!-- <i class="iconfont icon-aixin1"></i> -->
+          <view class="name">
+              {{item.mainname}} 
+          </view>
+        </view>
+        <view class='name_right'>
+          <i class="iconfont icon-shangxiajiantou" data-id="{{index}}" bindtap="toggle_show" style='transform:{{isShow[index]?"rotate(180deg)":"rotate(0deg)"}}'>
+          </i>
+          <i class='iconfont icon-msnui-forbid' bindtap='deletelist' data-id='{{index}}' wx:if='{{deleteshow}}'></i>
+        </view>
+      </view>
+
+      <!--隐藏的下拉框-->
+      <view class='weather_detail' data-id="{{index}}" wx:if="{{isShow[index]}}">
+
+        <!--背景图片转换  -->
+        <!-- <image src="../../img/true-(1)_03.png" class='slidebg' wx:if="{{judge=='sun'}}"></image>
+        <image src="../../img/a.png" class='slidebg' wx:elif="{{judge=='rain'}}"></image>
+        <image src="../../img/4.png" class='slidebg' wx:else hidden="{{judge==''}}" style='filter:brightness(1.05)'></image>   -->
+
+        <view class='address'>
+           <i class='iconfont icon-dingwei'></i>
+          <text>
+            {{item.address}}
+          </text>
+          <!-- <view class='sendmess_container'>
+            <text>消息推送</text>
+            <switch color='#77B27D'></switch>
+          </view> -->
+        </view>
+        <view class='match_msg'>
+          {{matchMsg}}
+        </view>
+       <view class="weather"> 
+        <text class='weather_msg'>{{weatherData}}</text> 
+      </view>
+      </view>
+
+    </view>
+    <!--demo结束 -->
+  </view> 
+  <view class='weui-footer'>
+    <!-- <view class="weui-footer__text">Ta的天气</view> -->
+  </view>
+</view>
