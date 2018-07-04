@@ -27,9 +27,8 @@
 - 项目名称：任意填写
 - 项目目录：path/to/your/workspace
 - 点击`添加项目`
--申请百度地图ak码
-
--在pages/index/index.js填写ak码
+- 申请百度地图ak码
+- 在pages/index/index.js填写ak码
 
 ### 开发计划
 
