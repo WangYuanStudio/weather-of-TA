@@ -3,7 +3,7 @@
 const app = getApp()
 var bmap = require('bmap-wx.min.js');
 var BMap = new bmap.BMapWX({
-  ak: '2C6Hf45WnIpfKZfXVg5QkYMjXr56UfUG'
+  ak: 'baidu ak code'
 });
 Page({
   data: {
